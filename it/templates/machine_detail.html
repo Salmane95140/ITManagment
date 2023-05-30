@@ -1,0 +1,50 @@
+{% extends "index.html" %}
+
+{% block content %}
+<div class="container">
+  <div class="card border-primary">
+    <div class="card-header text-center bg-primary text-white">
+      <h1>DETAIL MACHINE</h1>
+    </div>
+    <div>
+      <ul class="list-group list-group-horizontal-xl ">
+        <li class="list-group-item col-sm-3">NOM MACHINE </li>
+        <li class="list-group-item col-sm-9">{{ machine.nom}}</li>
+      </ul>
+    </div>
+    <div>
+      <ul class="list-group list-group-horizontal-xl ">
+        <li class="list-group-item col-sm-3">TYPE MACHINE</li>
+        <li class="list-group-item col-sm-9">{{ machine.typeMachine}}</li>
+      </ul>
+    </div>
+    <div>
+      <ul class="list-group list-group-horizontal-xl ">
+        <li class="list-group-item col-sm-3">PRIX</li>
+        <li class="list-group-item col-sm-9">{{ machine.prix }}</li>
+      </ul>
+    </div>
+    <div>
+      <ul class="list-group list-group-horizontal-xl ">
+        <li class="list-group-item col-sm-3">DATE ACHAT</li>
+        <li class="list-group-item col-sm-9">{{ machine.dateAchat|date:"d-m-Y" }}</li>
+      </ul>
+    </div>
+    <div>
+      <ul class="list-group list-group-horizontal-xl">
+        <li class="list-group-item col-sm-3">DATE MAINTENANCE</li>
+        <li class="list-group-item col-sm-9">{{ machine.maintenanceDate|date:"d-m-Y"}}</li>
+      </ul>
+    </div>
+  <div>
+      <ul class="list-group list-group-horizontal-xl ">
+        <li class="list-group-item col-sm-3">DATE FIN CONTRAT MAINTENANCE</li>
+        <li class="list-group-item col-sm-9"> {{ machine.dateFinContrantMaint|date:"d-m-Y" }} </li>
+      </ul>
+    </div>
+    <div class="card-footer bg-transparent border-primary">
+      <a href="{% url 'list_machines' %}"><button class="btn btn-primary"><i class="bi bi-arrow-left"></i>Retour</button></a>
+      </div>
+  </div>
+</div>
+{% endblock %}

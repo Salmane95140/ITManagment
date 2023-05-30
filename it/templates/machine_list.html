@@ -28,6 +28,11 @@
               <td>{{machine.maintenanceDate|date:"d-m-Y"}}</td>
               <td>{{machine.dateFinContrantMaint|date:"d-m-Y"}}</td>
               <td>
+                <a href="{% url 'detail_machine' machine.id %}">
+                  <button type="button" class="btn btn-secondary">
+                      <i class="bi bi-eye-fill"></i>
+                  </button>
+                </a>
               </td>
             </tr>
           {% endfor %}
