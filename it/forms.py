@@ -24,3 +24,23 @@ class AddMachineForm(forms.Form):
     #     if len(data) != 6:
     #         raise ValidationError((" Erreur de format pour le champ nom"))
     #     return data
+
+class MachineForm(forms.ModelForm):
+    class Meta:
+        model = Machine
+        fields = [
+             "nom",
+             "typeMachine",
+             "prix",
+             "dateAchat",
+             "maintenanceDate",
+             "dateFinContrantMaint"
+             ]
+        widgets = {
+            'nom': forms.TextInput(attrs={'class': 'form-control'}),
+            'typeMachine': forms.Select(attrs={'class': 'form-select'}),
+            'prix': forms.NumberInput(attrs={'class': 'form-control'}),
+            'dateAchat': DateInput(attrs={'class': 'form-control'}),
+            'maintenanceDate': DateInput(attrs={'class': 'form-control'}),
+            'dateFinContrantMaint': DateInput(attrs={'class': 'form-control'}),
+        }

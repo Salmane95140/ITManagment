@@ -1,7 +1,8 @@
 from django.shortcuts import render
+from django.shortcuts import render, get_object_or_404
 from django.http import HttpResponseRedirect
 from .models import Machine
-from it.forms import AddMachineForm
+from it.forms import AddMachineForm, MachineForm
 
 
 def machine_list_view(request):
@@ -34,3 +35,16 @@ def machine_add_form(request) :
         form = AddMachineForm()
 
     return render(request, "add_machine.html", {"form": form})
+
+
+def machine_update_view(request, pk):
+    context ={}
+    obj = get_object_or_404(Machine, id = pk)
+    form = MachineForm(request.POST or None, instance = obj)
+    if form.is_valid():
+        machine = form.save()
+        context['machine'] = machine
+        return render(request, 'machine_detail.html', context)
+    context["form"] = form
+
+    return render(request, "update_machine.html", context)
