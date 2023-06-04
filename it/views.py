@@ -3,6 +3,7 @@ from django.shortcuts import render, get_object_or_404
 from django.http import HttpResponseRedirect
 from .models import Machine
 from it.forms import AddMachineForm, MachineForm
+from django.contrib import messages
 
 
 def machine_list_view(request):
@@ -48,3 +49,9 @@ def machine_update_view(request, pk):
     context["form"] = form
 
     return render(request, "update_machine.html", context)
+
+def machine_delete_view(request, pk):
+    machine = get_object_or_404(Machine, id=pk)
+    machine.delete()
+    messages.success(request, "Suppression reussi.")
+    return HttpResponseRedirect("/machines")
