@@ -2,10 +2,11 @@ from django.shortcuts import render
 from django.shortcuts import render, get_object_or_404
 from django.http import HttpResponseRedirect
 from .models import Machine, Personne, UtilisateurMachine, TypeMaintenance
-from it.forms import AddMachineForm, MachineForm, PersonneForm, UtilisateurMachineForm
+from it.forms import AddMachineForm, MachineForm, PersonneForm, UtilisateurMachineForm, TypeMaintenanceForm
 from django.contrib import messages
 from django.views.generic.list import ListView
-
+from django.views.generic.edit import CreateView
+from django.urls import reverse_lazy
 
 def machine_list_view(request):
     machines = Machine.objects.all()
@@ -143,3 +144,13 @@ class TypeMaintenanceListView(ListView):
     model = TypeMaintenance
     template_name = 'type_maintenance_list.html'
     context_object_name = 'type_maintenances'
+
+class TypeMaintenanceCreateView(CreateView):
+    model = TypeMaintenance
+    form_class = TypeMaintenanceForm
+    template_name = 'type_maintenance_form.html'
+    success_url = reverse_lazy('list_typemaintenance')
+
+    def form_valid(self, form):
+        messages.success(self.request, "Ajout reussi.")
+        return super(TypeMaintenanceCreateView,self).form_valid(form)

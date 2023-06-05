@@ -18,5 +18,5 @@ urlpatterns = [
     path('usermachine/update/<pk>', views.user_machine_update_view, name='update_usermachine'),
     path('usermachine/delete/<pk>', views.user_machine_delete_view, name='delete_usermachine'),
     path('maintenancetype', views.TypeMaintenanceListView.as_view(), name='list_typemaintenance'),
-
+    path('maintenancetype/add', views.TypeMaintenanceCreateView.as_view(), name='add_typemaintenance'),
 ]

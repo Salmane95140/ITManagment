@@ -1,6 +1,7 @@
 from django import forms
 from django.core.exceptions import ValidationError
-from it.models import Machine, Personne, UtilisateurMachine
+from it.models import Machine, Personne, UtilisateurMachine, TypeMaintenance
+
 
 class DateInput(forms.DateInput):
     input_type = 'date'
@@ -71,4 +72,17 @@ class UtilisateurMachineForm(forms.ModelForm):
             'machine': forms.Select(attrs={'class': 'form-select'}),
             'personne': forms.Select(attrs={'class': 'form-select'}),
             'dateAttribution': DateInput(attrs={'class': 'form-control'}),
+        }
+
+class TypeMaintenanceForm(forms.ModelForm):
+    class Meta:
+        model = TypeMaintenance
+        fields = [
+            "nom",
+            "description",
+        ]
+        widgets = {
+            "nom": forms.TextInput(attrs={'class': 'form-control'}),
+            "description": forms.TextInput(attrs={'class': 'form-control'}),
+
         }
