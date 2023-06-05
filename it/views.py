@@ -131,3 +131,9 @@ def user_machine_update_view(request, pk):
     context["form"] = form
 
     return render(request, "update_user_machine.html", context)
+
+def user_machine_delete_view(request, pk):
+    user_machine = get_object_or_404(UtilisateurMachine, id=pk)
+    user_machine.delete()
+    messages.success(request, "Suppression reussi.")
+    return HttpResponseRedirect("/usermachine")
