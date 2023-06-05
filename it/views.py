@@ -74,3 +74,8 @@ def personne_add_form(request) :
         form = PersonneForm()
 
     return render(request, "add_personne.html", {"form": form})
+
+def personne_detail_view(request, pk):
+    personne = Personne.objects.get(id=pk)
+    context = {'personne' : personne, 'head_title' : "Detail Employe"}
+    return render(request, 'personne_detail.html', context)

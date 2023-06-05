@@ -27,7 +27,11 @@
               <td>{{ personne.nom}}</td>
               <td>{{ personne.poste}}</td>
               <td>
-              
+                <a href="{% url 'detail_personne' personne.id %}">
+                  <button type="button" class="btn btn-secondary">
+                      <i class="bi bi-eye-fill"></i>
+                  </button>
+                </a>
               </td>
             </tr>
           {% endfor %}
