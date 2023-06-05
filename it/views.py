@@ -5,7 +5,7 @@ from .models import Machine, Personne, UtilisateurMachine, TypeMaintenance
 from it.forms import AddMachineForm, MachineForm, PersonneForm, UtilisateurMachineForm, TypeMaintenanceForm
 from django.contrib import messages
 from django.views.generic.list import ListView
-from django.views.generic.edit import CreateView
+from django.views.generic.edit import CreateView, UpdateView
 from django.views.generic.detail import DetailView
 from django.urls import reverse_lazy
 
@@ -160,3 +160,13 @@ class TypeMaintenanceDetailView(DetailView):
     model = TypeMaintenance
     template_name = 'type_maintenance_detail.html'
     context_object_name = 'type_maintenance'
+
+class TypeMaintenanceUpdateView(UpdateView):
+    model = TypeMaintenance
+    form_class = TypeMaintenanceForm
+    template_name = 'type_maintenance_form.html'
+    success_url = reverse_lazy('list_typemaintenance')
+
+    def form_valid(self, form):
+        messages.success(self.request, "Modification reussi.")
+        return super(TypeMaintenanceUpdateView,self).form_valid(form)
