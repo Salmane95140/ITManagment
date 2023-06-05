@@ -2,7 +2,7 @@ from django.shortcuts import render
 from django.shortcuts import render, get_object_or_404
 from django.http import HttpResponseRedirect
 from .models import Machine, Personne, UtilisateurMachine
-from it.forms import AddMachineForm, MachineForm, PersonneForm
+from it.forms import AddMachineForm, MachineForm, PersonneForm, UtilisateurMachineForm
 from django.contrib import messages
 
 
@@ -103,3 +103,14 @@ def user_machine_list_view(request):
     context = {'user_machines': user_machines, 'head_title' : "Liste des utilisateurs et machines"}
 
     return render(request, 'list_utilisateur_machine.html', context)
+
+def user_machine_add_form(request) :
+    if request.method == "POST":
+        form = UtilisateurMachineForm(request.POST)
+        print(form)
+        if form.is_valid():
+            form.save()
+            return HttpResponseRedirect("/usermachine")
+    else:
+        form = UtilisateurMachineForm()
+    return render(request, "add_utilisateur_machine.html", {"form": form})
