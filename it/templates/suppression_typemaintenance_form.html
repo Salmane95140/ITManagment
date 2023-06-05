@@ -1,0 +1,16 @@
+{%extends 'index.html'%}
+
+{%block content%}
+<div class="center">
+	<form method="post" class="card">
+		{% csrf_token %}
+		<h2>Suppression type maintenance </h2>
+		<p>Etes vous sure de bien vouloir supprimer "{{typemaintenance}}"?</p>
+		<p class="form-buttons">
+			<input type="submit" class="btn btn-danger" value="Supprimer">
+			<a href="{% url 'detail_typemaintenance' typemaintenance.pk %}" class="btn btn-primary">Annuler</a>
+		</p>
+	</form>
+</div>
+
+{%endblock content%}

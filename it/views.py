@@ -5,7 +5,7 @@ from .models import Machine, Personne, UtilisateurMachine, TypeMaintenance
 from it.forms import AddMachineForm, MachineForm, PersonneForm, UtilisateurMachineForm, TypeMaintenanceForm
 from django.contrib import messages
 from django.views.generic.list import ListView
-from django.views.generic.edit import CreateView, UpdateView
+from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from django.views.generic.detail import DetailView
 from django.urls import reverse_lazy
 
@@ -170,3 +170,13 @@ class TypeMaintenanceUpdateView(UpdateView):
     def form_valid(self, form):
         messages.success(self.request, "Modification reussi.")
         return super(TypeMaintenanceUpdateView,self).form_valid(form)
+
+class TypeMaintenanceDeleteView(DeleteView):
+    model = TypeMaintenance
+    context_object_name = 'typemaintenance'
+    template_name = 'suppression_typemaintenance_form.html'
+    success_url = reverse_lazy('list_typemaintenance')
+
+    def form_valid(self, form):
+        messages.success(self.request, "Suppression reussi.")
+        return super(TypeMaintenanceDeleteView,self).form_valid(form)

@@ -21,6 +21,7 @@
     <div class="card-footer bg-transparent border-primary">
       <a href="{% url 'list_typemaintenance' %}"><button class="btn btn-primary"><i class="bi bi-arrow-left"></i>Retour</button></a>
       <a href="{% url 'update_typemaintenance' type_maintenance.id %}"><button class="btn btn-primary">  <i class="bi bi-pencil-square"></i>Modifier</button></a>
+      <a href="{% url 'delete_typemaintenance' type_maintenance.id %}"><button class="btn btn-danger"><i class="bi bi-trash-fill"></i>Supprimer</button></a>
     </div>
   </div>
 </div>
