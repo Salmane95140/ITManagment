@@ -119,3 +119,15 @@ def detail_usermachine(request, pk):
     user_machine = UtilisateurMachine.objects.get(pk=pk)
     context = {'user_machine' : user_machine, 'head_title' : "Detail Equipement Employe"}
     return render(request, 'user_machine_detail.html', context)
+
+def user_machine_update_view(request, pk):
+    context ={}
+    obj = get_object_or_404(UtilisateurMachine, id = pk)
+    form = UtilisateurMachineForm(request.POST or None, instance = obj)
+    if form.is_valid():
+        user_machine = form.save()
+        context['user_machine'] = user_machine
+        return render(request, 'user_machine_detail.html', context)
+    context["form"] = form
+
+    return render(request, "update_user_machine.html", context)

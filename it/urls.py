@@ -15,4 +15,5 @@ urlpatterns = [
     path('usermachine', views.user_machine_list_view, name="list_usermachine"),
     path('usermachine/add', views.user_machine_add_form, name='add_usermachine'),
     path('usermachine/see/<pk>', views.detail_usermachine, name="detail_usermachine"),
+    path('usermachine/update/<pk>', views.user_machine_update_view, name='update_usermachine'),
 ]
