@@ -8,4 +8,5 @@ urlpatterns = [
     path('machine/update/<pk>', views.machine_update_view, name='update_machine'),
     path('machine/delete/<pk>', views.machine_delete_view, name='delete_machine'),
     path('personne', views.personne_list_view, name='list_personnes'),
+    path('personne/add', views.personne_add_form, name='add_personne'),
 ]

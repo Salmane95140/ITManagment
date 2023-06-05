@@ -2,7 +2,7 @@ from django.shortcuts import render
 from django.shortcuts import render, get_object_or_404
 from django.http import HttpResponseRedirect
 from .models import Machine, Personne
-from it.forms import AddMachineForm, MachineForm
+from it.forms import AddMachineForm, MachineForm, PersonneForm
 from django.contrib import messages
 
 
@@ -60,3 +60,17 @@ def personne_list_view(request):
     personnes = Personne.objects.all()
     context = {'personnes': personnes, 'head_title' : "Liste des Employes"}
     return render(request, 'personne_list.html', context)
+
+def personne_add_form(request) :
+    if request.method == "POST":
+        form = PersonneForm(request.POST)
+        if form.is_valid():
+            personne = Personne(prenom = form.cleaned_data['prenom'], nom=form.cleaned_data['nom'],  poste= form.cleaned_data['poste'])
+            personne.save()
+            messages.success(request, "Ajout reussi.")
+
+            return HttpResponseRedirect("/personne")
+    else:
+        form = PersonneForm()
+
+    return render(request, "add_personne.html", {"form": form})
