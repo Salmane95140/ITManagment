@@ -91,3 +91,9 @@ def personne_update_view(request, pk):
     context["form"] = form
 
     return render(request, "update_personne.html", context)
+
+def personne_delete_view(request, pk):
+    personne = get_object_or_404(Personne, id=pk)
+    personne.delete()
+    messages.success(request, "Suppression reussi.")
+    return HttpResponseRedirect("/personne")
