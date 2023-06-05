@@ -45,20 +45,25 @@
   <div class="row">
     <nav id="sidebarMenu" class="col-md-3 col-lg-2 d-md-block bg-body-tertiary sidebar collapse">
       <div class="position-sticky pt-3 sidebar-sticky">
-        <ul class="nav flex-column list-group">
-          <li class="nav-item list-group-item list-group-item-secondary">
-            <a class="nav-link" aria-current="page" href="#">
+        <ul class="nav flex-column">
+          <li class="nav-item">
+            <a class="nav-link active" aria-current="page" href="#">
               <span data-feather="home" class="align-text-bottom"></span>
               Dashboard
             </a>
           </li>
-          <li class="nav-item list-group-item">
-            <a class="nav-link " href="{% url 'list_machines'%}">
+          <li class="nav-item">
+            <a class="nav-link" href="{% url 'list_machines'%}">
               <span data-feather="file" class="align-text-bottom"></span>
               Machines
             </a>
           </li>
-
+          <li class="nav-item">
+            <a class="nav-link" href="{% url 'list_personnes' %}">
+              <span data-feather="users" class="align-text-bottom"></span>
+              Personnel
+            </a>
+          </li>
         </ul>
 
     </div>
@@ -69,6 +74,17 @@
         <h1 class="h2">  {{ head_title }}</h1>
 
       </div>
+
+      {% if messages %}
+          <div class="messages">
+            {% for message in messages %}
+              <div class="alert {% if message.tags %}alert-{{ message.tags }}"{% endif %}>
+                {{ message }}
+              </div>
+            {% endfor %}
+          </div>
+      {% endif %}
+
 
       {% block content %}
 
