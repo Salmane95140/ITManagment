@@ -25,7 +25,12 @@
               <td>{{ type_maintenance.nom}}</td>
               <td>{{ type_maintenance.description}}</td>
               <td>
-              
+                <a href="{% url 'detail_typemaintenance' type_maintenance.id %}">
+                  <button type="button" class="btn btn-secondary">
+                      <i class="bi bi-eye-fill"></i>
+
+                  </button>
+                </a>
               </td>
             </tr>
           {% endfor %}

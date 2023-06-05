@@ -6,6 +6,7 @@ from it.forms import AddMachineForm, MachineForm, PersonneForm, UtilisateurMachi
 from django.contrib import messages
 from django.views.generic.list import ListView
 from django.views.generic.edit import CreateView
+from django.views.generic.detail import DetailView
 from django.urls import reverse_lazy
 
 def machine_list_view(request):
@@ -154,3 +155,8 @@ class TypeMaintenanceCreateView(CreateView):
     def form_valid(self, form):
         messages.success(self.request, "Ajout reussi.")
         return super(TypeMaintenanceCreateView,self).form_valid(form)
+
+class TypeMaintenanceDetailView(DetailView):
+    model = TypeMaintenance
+    template_name = 'type_maintenance_detail.html'
+    context_object_name = 'type_maintenance'

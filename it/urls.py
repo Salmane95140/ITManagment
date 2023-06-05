@@ -19,4 +19,5 @@ urlpatterns = [
     path('usermachine/delete/<pk>', views.user_machine_delete_view, name='delete_usermachine'),
     path('maintenancetype', views.TypeMaintenanceListView.as_view(), name='list_typemaintenance'),
     path('maintenancetype/add', views.TypeMaintenanceCreateView.as_view(), name='add_typemaintenance'),
+    path('maintenancetype/<pk>', views.TypeMaintenanceDetailView.as_view(), name='detail_typemaintenance'),
 ]

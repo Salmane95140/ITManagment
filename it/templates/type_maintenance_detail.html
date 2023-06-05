@@ -1,0 +1,26 @@
+{% extends "index.html" %}
+
+{% block content %}
+<div class="container">
+  <div class="card border-primary">
+    <div class="card-header text-center bg-primary text-white">
+      <h1>DETAIL TYPE MAINTENANCE</h1>
+    </div>
+    <div>
+      <ul class="list-group list-group-horizontal-xl ">
+        <li class="list-group-item col-sm-3">NOM </li>
+        <li class="list-group-item col-sm-9">{{ type_maintenance.nom}}</li>
+      </ul>
+    </div>
+    <div>
+      <ul class="list-group list-group-horizontal-xl ">
+        <li class="list-group-item col-sm-3">DESCRIPTION</li>
+        <li class="list-group-item col-sm-9">{{ type_maintenance.description}}</li>
+      </ul>
+    </div>
+    <div class="card-footer bg-transparent border-primary">
+      <a href="{% url 'list_typemaintenance' %}"><button class="btn btn-primary"><i class="bi bi-arrow-left"></i>Retour</button></a>
+    </div>
+  </div>
+</div>
+{% endblock %}
