@@ -1,7 +1,7 @@
 from django.shortcuts import render
 from django.shortcuts import render, get_object_or_404
 from django.http import HttpResponseRedirect
-from .models import Machine, Personne
+from .models import Machine, Personne, UtilisateurMachine
 from it.forms import AddMachineForm, MachineForm, PersonneForm
 from django.contrib import messages
 
@@ -97,3 +97,9 @@ def personne_delete_view(request, pk):
     personne.delete()
     messages.success(request, "Suppression reussi.")
     return HttpResponseRedirect("/personne")
+
+def user_machine_list_view(request):
+    user_machines = UtilisateurMachine.objects.all()
+    context = {'user_machines': user_machines, 'head_title' : "Liste des utilisateurs et machines"}
+
+    return render(request, 'list_utilisateur_machine.html', context)

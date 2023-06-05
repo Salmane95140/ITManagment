@@ -1,0 +1,34 @@
+{% extends "index.html" %}
+
+
+{% block content %}
+
+<div class="table-responsive">
+  <table class="table table-striped table-sm">
+    <thead>
+      <tr>
+        <th scope="col">Utilisateur</th>
+        <th scope="col">Nom machine</th>
+        <th scope="col">Type machine</th>
+        <th>action</th>
+
+      </tr>
+    </thead>
+    <tbody>
+      {% if user_machines %}
+          {% for usermachine in user_machines %}
+            <tr>
+              <td>{{ usermachine.personne}}</td>
+              <td>{{ usermachine.machine}}</td>
+              <td>{{ usermachine.dateAttribution}}</td>
+              <td>
+
+              </td>
+            </tr>
+          {% endfor %}
+      {% endif %}
+    </tbody>
+  </table>
+</div>
+
+{% endblock %}
