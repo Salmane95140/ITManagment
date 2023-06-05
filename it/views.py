@@ -79,3 +79,15 @@ def personne_detail_view(request, pk):
     personne = Personne.objects.get(id=pk)
     context = {'personne' : personne, 'head_title' : "Detail Employe"}
     return render(request, 'personne_detail.html', context)
+
+def personne_update_view(request, pk):
+    context ={}
+    obj = get_object_or_404(Personne, id = pk)
+    form = PersonneForm(request.POST or None, instance = obj)
+    if form.is_valid():
+        personne = form.save()
+        context['personne'] = personne
+        return render(request, 'personne_detail.html', context)
+    context["form"] = form
+
+    return render(request, "update_personne.html", context)

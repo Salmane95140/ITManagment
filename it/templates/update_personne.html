@@ -1,0 +1,14 @@
+{% extends "index.html" %}
+
+{% block content %}
+<div class="col-md-6">
+
+  <h2>MODIFICATION EMPLOYEE</h2>
+    <form method="post" class="mb-3">
+      {% csrf_token %}
+      {{ form.as_p }}
+      <input class="btn btn-primary" type="submit" value="Ajouter">
+
+    </form>
+</div>
+{% endblock %}
