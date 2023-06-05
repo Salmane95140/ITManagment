@@ -64,6 +64,12 @@
               Personnel
             </a>
           </li>
+          <li class="nav-item">
+            <a class="nav-link" href="{% url 'list_usermachine' %}">
+              <span data-feather="users" class="align-text-bottom"></span>
+              Utilisateur/Machine
+            </a>
+          </li>
         </ul>
 
     </div>
@@ -84,7 +90,6 @@
             {% endfor %}
           </div>
       {% endif %}
-
 
       {% block content %}
 

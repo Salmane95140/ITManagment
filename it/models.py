@@ -29,3 +29,14 @@ class Personne(models.Model):
 
     def __str__(self):
         return '%s %s'%(self.nom, self.prenom)
+
+class UtilisateurMachine(models.Model):
+    machine = models.ForeignKey(Machine, on_delete=models.CASCADE)
+    personne = models.ForeignKey(Personne, on_delete=models.CASCADE)
+    dateAttribution = models.DateField(default= datetime.now())
+
+    class Meta:
+        unique_together = ["machine", "personne"]
+
+    def __str__(self):
+        return '%s - %s'%(self.personne , self.machine )
