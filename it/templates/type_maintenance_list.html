@@ -1,0 +1,32 @@
+{% extends "index.html" %}
+
+
+{% block content %}
+
+<div class="table-responsive">
+  <table class="table table-striped table-sm">
+    <thead>
+      <tr>
+        <th scope="col">Nom</th>
+        <th scope="col">Description</th>
+        <th>action</th>
+
+      </tr>
+    </thead>
+    <tbody>
+      {% if type_maintenances %}
+          {% for type_maintenance in type_maintenances %}
+            <tr>
+              <td>{{ type_maintenance.nom}}</td>
+              <td>{{ type_maintenance.description}}</td>
+              <td>
+              
+              </td>
+            </tr>
+          {% endfor %}
+      {% endif %}
+    </tbody>
+  </table>
+</div>
+
+{% endblock %}

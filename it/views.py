@@ -1,9 +1,10 @@
 from django.shortcuts import render
 from django.shortcuts import render, get_object_or_404
 from django.http import HttpResponseRedirect
-from .models import Machine, Personne, UtilisateurMachine
+from .models import Machine, Personne, UtilisateurMachine, TypeMaintenance
 from it.forms import AddMachineForm, MachineForm, PersonneForm, UtilisateurMachineForm
 from django.contrib import messages
+from django.views.generic.list import ListView
 
 
 def machine_list_view(request):
@@ -137,3 +138,8 @@ def user_machine_delete_view(request, pk):
     user_machine.delete()
     messages.success(request, "Suppression reussi.")
     return HttpResponseRedirect("/usermachine")
+
+class TypeMaintenanceListView(ListView):
+    model = TypeMaintenance
+    template_name = 'type_maintenance_list.html'
+    context_object_name = 'type_maintenances'
