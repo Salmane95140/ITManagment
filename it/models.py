@@ -40,3 +40,10 @@ class UtilisateurMachine(models.Model):
 
     def __str__(self):
         return '%s - %s'%(self.personne , self.machine )
+
+class TypeMaintenance(models.Model):
+    nom = models.CharField(max_length=20)
+    description = models.CharField(max_length=50, blank=True)
+
+    def __str__(self):
+        return self.nom
