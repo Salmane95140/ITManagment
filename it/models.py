@@ -47,3 +47,12 @@ class TypeMaintenance(models.Model):
 
     def __str__(self):
         return self.nom
+
+class MaintenancePreventive(models.Model):
+    type_maintenance = models.ForeignKey(TypeMaintenance, on_delete= models.CASCADE)
+    machine = models.ForeignKey(Machine, on_delete=models.CASCADE)
+    personne = models.ForeignKey(Personne, on_delete=models.CASCADE)
+    date = models.DateField(default=datetime.now())
+
+    def __str__(self):
+        return '%s - %s'%(self.machine, self.type_maintenance)
