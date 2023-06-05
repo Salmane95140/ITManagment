@@ -27,7 +27,12 @@
               <td>{{ usermachine.machine}}</td>
               <td>{{ usermachine.dateAttribution}}</td>
               <td>
+                <a href="{% url 'detail_usermachine' usermachine.pk %}">
+                  <button type="button" class="btn btn-secondary">
+                      <i class="bi bi-eye-fill"></i>
 
+                  </button>
+                </a>
               </td>
             </tr>
           {% endfor %}

@@ -1,0 +1,32 @@
+{% extends "index.html" %}
+
+{% block content %}
+<div class="container">
+  <div class="card border-primary">
+    <div class="card-header text-center bg-primary text-white">
+      <h1>DETAIL ATTRIBUTION</h1>
+    </div>
+    <div>
+      <ul class="list-group list-group-horizontal-xl ">
+        <li class="list-group-item col-sm-3">EQUIPEMENT </li>
+        <li class="list-group-item col-sm-9">{{ user_machine.machine}}</li>
+      </ul>
+    </div>
+    <div>
+      <ul class="list-group list-group-horizontal-xl ">
+        <li class="list-group-item col-sm-3">PERSONNE</li>
+        <li class="list-group-item col-sm-9">{{ user_machine.personne}}</li>
+      </ul>
+    </div>
+    <div>
+      <ul class="list-group list-group-horizontal-xl ">
+        <li class="list-group-item col-sm-3">DATE ATTRIBUTION</li>
+        <li class="list-group-item col-sm-9">{{ user_machine.dateAttribution|date:"d-m-Y" }}</li>
+      </ul>
+    </div>
+    <div class="card-footer bg-transparent border-primary">
+      <a href="{% url 'list_usermachine' %}"><button class="btn btn-primary"><i class="bi bi-arrow-left"></i>Retour</button></a>
+      </div>
+  </div>
+</div>
+{% endblock %}

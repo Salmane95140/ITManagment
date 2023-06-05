@@ -114,3 +114,8 @@ def user_machine_add_form(request) :
     else:
         form = UtilisateurMachineForm()
     return render(request, "add_utilisateur_machine.html", {"form": form})
+
+def detail_usermachine(request, pk):
+    user_machine = UtilisateurMachine.objects.get(pk=pk)
+    context = {'user_machine' : user_machine, 'head_title' : "Detail Equipement Employe"}
+    return render(request, 'user_machine_detail.html', context)
