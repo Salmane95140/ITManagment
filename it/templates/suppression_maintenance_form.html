@@ -1,0 +1,16 @@
+{%extends 'index.html'%}
+
+{%block content%}
+<div class="center">
+	<form method="post" class="card">
+		{% csrf_token %}
+		<h2>Suppression maintenance </h2>
+		<p>Etes vous sure de bien vouloir supprimer "{{maintenance}}"?</p>
+		<p class="form-buttons">
+			<input type="submit" class="btn btn-danger" value="Supprimer">
+			<a href="{% url 'list_maintenance'%}" class="btn btn-primary">Annuler</a>
+		</p>
+	</form>
+</div>
+
+{%endblock content%}

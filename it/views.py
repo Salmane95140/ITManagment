@@ -210,3 +210,13 @@ class MaintenancePreventiveUpdateView(UpdateView):
     def form_valid(self, form):
         messages.success(self.request, "Modification reussi.")
         return super(MaintenancePreventiveUpdateView,self).form_valid(form)
+
+class MaintenancePreventiveDeleteView(DeleteView):
+    model = MaintenancePreventive
+    context_object_name = 'maintenance'
+    template_name = 'suppression_maintenance_form.html'
+    success_url = reverse_lazy('list_maintenance')
+
+    def form_valid(self, form):
+        messages.success(self.request, "Suppression reussi.")
+        return super(MaintenancePreventiveDeleteView,self).form_valid(form)

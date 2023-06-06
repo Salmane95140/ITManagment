@@ -33,6 +33,7 @@
     <div class="card-footer bg-transparent border-primary">
       <a href="{% url 'list_maintenance' %}"><button class="btn btn-primary"><i class="bi bi-arrow-left"></i>Retour</button></a>
       <a href="{% url 'update_maintenance' maintenance.id %}"><button class="btn btn-primary">  <i class="bi bi-pencil-square"></i>Modifier</button></a>
+      <a href="{% url 'delete_maintenance' maintenance.id %}"><button class="btn btn-danger"><i class="bi bi-trash-fill"></i>Supprimer</button></a>
     </div>
   </div>
 </div>
