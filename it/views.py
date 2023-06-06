@@ -195,3 +195,8 @@ class MaintenancePreventiveCreateView(CreateView):
     def form_valid(self, form):
         messages.success(self.request, "Ajout reussi.")
         return super(MaintenancePreventiveCreateView,self).form_valid(form)
+
+class MaintenancePreventiveDetailView(DetailView):
+    model = MaintenancePreventive
+    template_name = 'maintenance_detail.html'
+    context_object_name = 'maintenance'

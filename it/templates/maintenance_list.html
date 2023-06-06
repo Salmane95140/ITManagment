@@ -29,7 +29,12 @@
               <td>{{ maintenance.personne}}</td>
               <td>{{ maintenance.date|date:"d-m-Y"}}</td>
               <td>
-                
+                <a href="{% url 'detail_maintenance' maintenance.id %}">
+                  <button type="button" class="btn btn-secondary">
+                      <i class="bi bi-eye-fill"></i>
+
+                  </button>
+                </a>
               </td>
             </tr>
           {% endfor %}

@@ -24,5 +24,7 @@ urlpatterns = [
     path('maintenancetype/delete/<pk>', views.TypeMaintenanceDeleteView.as_view(), name='delete_typemaintenance'),
     path('maintenance', views.MaintenancePreventiveListView.as_view(), name='list_maintenance'),
     path('maintenance/add', views.MaintenancePreventiveCreateView.as_view(), name='add_maintenance'),
+    path('maintenance/<pk>', views.MaintenancePreventiveDetailView.as_view(), name='detail_maintenance'),
+
 
 ]
