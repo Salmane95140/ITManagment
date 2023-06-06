@@ -200,3 +200,13 @@ class MaintenancePreventiveDetailView(DetailView):
     model = MaintenancePreventive
     template_name = 'maintenance_detail.html'
     context_object_name = 'maintenance'
+
+class MaintenancePreventiveUpdateView(UpdateView):
+    model = MaintenancePreventive
+    form_class = MaintenanceForm
+    template_name = 'maintenance_form.html'
+    success_url = reverse_lazy('list_maintenance')
+
+    def form_valid(self, form):
+        messages.success(self.request, "Modification reussi.")
+        return super(MaintenancePreventiveUpdateView,self).form_valid(form)

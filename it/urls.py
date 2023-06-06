@@ -25,6 +25,6 @@ urlpatterns = [
     path('maintenance', views.MaintenancePreventiveListView.as_view(), name='list_maintenance'),
     path('maintenance/add', views.MaintenancePreventiveCreateView.as_view(), name='add_maintenance'),
     path('maintenance/<pk>', views.MaintenancePreventiveDetailView.as_view(), name='detail_maintenance'),
-
+    path('maintenance/update/<pk>', views.MaintenancePreventiveUpdateView.as_view(), name='update_maintenance'),
 
 ]
