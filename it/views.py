@@ -2,7 +2,7 @@ from django.shortcuts import render
 from django.shortcuts import render, get_object_or_404
 from django.http import HttpResponseRedirect
 from .models import Machine, Personne, UtilisateurMachine, TypeMaintenance, MaintenancePreventive
-from it.forms import AddMachineForm, MachineForm, PersonneForm, UtilisateurMachineForm, TypeMaintenanceForm
+from it.forms import AddMachineForm, MachineForm, PersonneForm, UtilisateurMachineForm, TypeMaintenanceForm, MaintenanceForm
 from django.contrib import messages
 from django.views.generic.list import ListView
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
@@ -185,3 +185,13 @@ class MaintenancePreventiveListView(ListView):
     model = MaintenancePreventive
     template_name = 'maintenance_list.html'
     context_object_name = 'maintenances'
+
+class MaintenancePreventiveCreateView(CreateView):
+    model = MaintenancePreventive
+    form_class = MaintenanceForm
+    template_name = 'maintenance_form.html'
+    success_url = reverse_lazy('list_maintenance')
+
+    def form_valid(self, form):
+        messages.success(self.request, "Ajout reussi.")
+        return super(MaintenancePreventiveCreateView,self).form_valid(form)
