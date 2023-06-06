@@ -1,7 +1,7 @@
 from django.shortcuts import render
 from django.shortcuts import render, get_object_or_404
 from django.http import HttpResponseRedirect
-from .models import Machine, Personne, UtilisateurMachine, TypeMaintenance
+from .models import Machine, Personne, UtilisateurMachine, TypeMaintenance, MaintenancePreventive
 from it.forms import AddMachineForm, MachineForm, PersonneForm, UtilisateurMachineForm, TypeMaintenanceForm
 from django.contrib import messages
 from django.views.generic.list import ListView
@@ -180,3 +180,8 @@ class TypeMaintenanceDeleteView(DeleteView):
     def form_valid(self, form):
         messages.success(self.request, "Suppression reussi.")
         return super(TypeMaintenanceDeleteView,self).form_valid(form)
+
+class MaintenancePreventiveListView(ListView):
+    model = MaintenancePreventive
+    template_name = 'maintenance_list.html'
+    context_object_name = 'maintenances'

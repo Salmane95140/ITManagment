@@ -1,0 +1,36 @@
+{% extends "index.html" %}
+
+
+{% block content %}
+
+<div class="table-responsive">
+  <table class="table table-striped table-sm">
+    <thead>
+      <tr>
+        <th scope="col">Type maintenance</th>
+        <th scope="col">Machine</th>
+        <th scope="col">Personne</th>
+        <th scope="col">Date maintenance</th>
+        <th>action</th>
+
+      </tr>
+    </thead>
+    <tbody>
+      {% if maintenances %}
+          {% for maintenance in maintenances %}
+            <tr>
+              <td>{{ maintenance.type_maintenance}}</td>
+              <td>{{ maintenance.machine}}</td>
+              <td>{{ maintenance.personne}}</td>
+              <td>{{ maintenance.date|date:"d-m-Y"}}</td>
+              <td>
+              
+              </td>
+            </tr>
+          {% endfor %}
+      {% endif %}
+    </tbody>
+  </table>
+</div>
+
+{% endblock %}

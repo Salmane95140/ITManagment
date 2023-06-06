@@ -22,5 +22,7 @@ urlpatterns = [
     path('maintenancetype/<pk>', views.TypeMaintenanceDetailView.as_view(), name='detail_typemaintenance'),
     path('maintenancetype/update/<pk>', views.TypeMaintenanceUpdateView.as_view(), name='update_typemaintenance'),
     path('maintenancetype/delete/<pk>', views.TypeMaintenanceDeleteView.as_view(), name='delete_typemaintenance'),
+    path('maintenance', views.MaintenancePreventiveListView.as_view(), name='list_maintenance'),
+
 
 ]
