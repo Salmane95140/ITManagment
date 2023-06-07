@@ -14,6 +14,7 @@
       <tr>
         <th scope="col">Prenom</th>
         <th scope="col">Nom</th>
+        <th scope="col">Email</th>
         <th scope="col">Poste</th>
         <th>action</th>
 
@@ -25,6 +26,7 @@
             <tr>
               <td>{{ personne.prenom}}</td>
               <td>{{ personne.nom}}</td>
+              <td>{{ personne.email}}</td>
               <td>{{ personne.poste}}</td>
               <td>
                 <a href="{% url 'detail_personne' personne.id %}">

@@ -9,6 +9,10 @@ from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from django.views.generic.detail import DetailView
 from django.urls import reverse_lazy
 
+def index(request):
+    #context = {'head_title': "Accueil"}
+    return render(request, 'accueil.html')
+
 def machine_list_view(request):
     machines = Machine.objects.all()
     context = {'machines': machines, 'head_title' : "Liste des Equipements"}
