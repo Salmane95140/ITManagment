@@ -4,6 +4,7 @@ from django.http import HttpResponseRedirect
 from .models import Machine, Personne, UtilisateurMachine, TypeMaintenance, MaintenancePreventive
 from it.forms import AddMachineForm, MachineForm, PersonneForm, UtilisateurMachineForm, TypeMaintenanceForm, MaintenanceForm
 from django.contrib import messages
+from django.contrib.auth import authenticate
 from django.views.generic.list import ListView
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from django.views.generic.detail import DetailView
@@ -12,6 +13,21 @@ from django.urls import reverse_lazy
 def index(request):
     #context = {'head_title': "Accueil"}
     return render(request, 'accueil.html')
+
+def seloger(request):
+    return render(request, 'login.html')
+
+def login_view(request):
+    if request.method == 'POST':
+
+        nom = request.POST["email"]
+        mot_de_passe = request.POST["passe"]
+        user = authenticate(username=nom, password=mot_de_passe)
+        if user is not None:
+            return render(request, 'dashboard.html')
+        else:
+            return render(request, 'error_login.html')
+
 
 def machine_list_view(request):
     machines = Machine.objects.all()

@@ -179,9 +179,9 @@
   <div class="p-5 text-center bg-body-tertiary rounded-3">
     {%load static %}
     <img class="bi mt-4 mb-3" src={% static 'images/rt_development.jpeg' %} width="200" height="100"/>
-    <h1 class="text-body-emphasis">Bienvenue</h1>
+    <h1 class="text-body-emphasis">Erreur connexion</h1>
     <p class="col-lg-8 mx-auto fs-5 text-muted">
-      Un texte de presentation de r&t development
+      Nom d'utilisateur ou mot de passe incorrect
     </p>
     <div class="d-inline-flex gap-2 mb-5">
       <a href="{% url 'seloger' %}">
@@ -190,9 +190,6 @@
         <svg class="bi ms-2" width="24" height="24"><use xlink:href="#arrow-right-short"/></svg>
       </button>
       </a>
-      <button class="btn btn-outline-secondary btn-lg px-4 rounded-pill" type="button">
-        Qui sommes nous?
-      </button>
     </div>
   </div>
 </div>
