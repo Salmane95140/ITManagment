@@ -30,56 +30,70 @@ def login_view(request):
         else:
             return render(request, 'error_login.html')
 
-# liste des machines ou equipements
+# fonction liste des machines ou equipements
 def machine_list_view(request):
+    #recupurer l'ensemble des machines
     machines = Machine.objects.all()
+    #mettre dans le context l'ensemble des machine et le texte a affiche
     context = {'machines': machines, 'head_title' : "Liste des Equipements"}
     return render(request, 'machine_list.html', context)
 
 # les details de chaque machine avec comme parametre pk qui l'id de la machine
 def machine_detail_view(request, pk):
+    #recupurer la machine correspondant au pk en parametre
     machine = Machine.objects.get(id=pk)
     context = {'machine' : machine, 'head_title' : "Detail Equipement"}
     return render(request, 'machine_detail.html', context)
 
+#fonction de creation d'une machine
 def machine_add_form(request) :
-    # if this is a POST request we need to process the form data
+    # verifie si la raquete est de type POST
     if request.method == "POST":
-        # create a form instance and populate it with data from the request:
+        # creer le formulaire et ajouter les donnees dans le formulaire apartir du request:
         form = AddMachineForm(request.POST)
         # check whether it's valid:
         if form.is_valid():
-            # process the data in form.cleaned_data as required
-
+            #creation d'une machine
             machine = Machine(nom = form.cleaned_data['nom'], typeMachine=form.cleaned_data['typeMachine'],  prix= form.cleaned_data['prix'],
             dateAchat = form.cleaned_data['dateAchat'], maintenanceDate = form.cleaned_data['maintenanceDate'], dateFinContrantMaint = form.cleaned_data['dateFinContrantMaint'])
+            # sauvegarde d'une machine dans la base de donnees
             machine.save()
-
+            #retour vers la liste des machines
             return HttpResponseRedirect("/machines")
 
-    # if a GET (or any other method) we'll create a blank form
+    # si la requete est de type GET ou autre creer un formulaire vide
     else:
         form = AddMachineForm()
 
     return render(request, "add_machine.html", {"form": form})
 
-
+#modification machine
 def machine_update_view(request, pk):
-    context ={}
+    context ={'head_title' : "Modification Equipement"}
+    #recherche la machine si elle est trouve retourne l'objet sinon renvoi not found
     obj = get_object_or_404(Machine, id = pk)
+    #rempli le formulaire
     form = MachineForm(request.POST or None, instance = obj)
+    #verifie si le formulaire est valide
     if form.is_valid():
+        #modification
         machine = form.save()
         context['machine'] = machine
+        #retour a detail machine
         return render(request, 'machine_detail.html', context)
     context["form"] = form
 
     return render(request, "update_machine.html", context)
 
+#suppression machine
 def machine_delete_view(request, pk):
+    #recherche la machine si elle est trouve retourne l'objet sinon renvoi not found
     machine = get_object_or_404(Machine, id=pk)
+    #supprimer la machine
     machine.delete()
+    #message status suppression
     messages.success(request, "Suppression reussi.")
+    #retour vers liste machine
     return HttpResponseRedirect("/machines")
 
 def personne_list_view(request):
@@ -133,7 +147,6 @@ def user_machine_list_view(request):
 def user_machine_add_form(request) :
     if request.method == "POST":
         form = UtilisateurMachineForm(request.POST)
-        print(form)
         if form.is_valid():
             form.save()
             return HttpResponseRedirect("/usermachine")
@@ -163,18 +176,23 @@ def user_machine_delete_view(request, pk):
     user_machine.delete()
     messages.success(request, "Suppression reussi.")
     return HttpResponseRedirect("/usermachine")
-
+#list des types de maintenance avec des vue fondees sur la class
 class TypeMaintenanceListView(ListView):
+    #model a lister
     model = TypeMaintenance
+    #le template a utiliser
     template_name = 'type_maintenance_list.html'
+    #nom variable utiliser au niveau du template
     context_object_name = 'type_maintenances'
 
 class TypeMaintenanceCreateView(CreateView):
     model = TypeMaintenance
     form_class = TypeMaintenanceForm
     template_name = 'type_maintenance_form.html'
+    #si la creation est reussi retourner a la liste des types de maintenance
     success_url = reverse_lazy('list_typemaintenance')
 
+    #controle la validite du formulaire d'ajout
     def form_valid(self, form):
         messages.success(self.request, "Ajout reussi.")
         return super(TypeMaintenanceCreateView,self).form_valid(form)

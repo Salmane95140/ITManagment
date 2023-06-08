@@ -25,10 +25,11 @@ class AddMachineForm(forms.Form):
     #     if len(data) != 6:
     #         raise ValidationError((" Erreur de format pour le champ nom"))
     #     return data
-
+#formulaire base sur le model
 class MachineForm(forms.ModelForm):
     class Meta:
         model = Machine
+        #les champ a affiche sur le formulaire d'ajout
         fields = [
              "nom",
              "typeMachine",
@@ -37,6 +38,7 @@ class MachineForm(forms.ModelForm):
              "maintenanceDate",
              "dateFinContrantMaint"
              ]
+        #styliser les input
         widgets = {
             'nom': forms.TextInput(attrs={'class': 'form-control'}),
             'typeMachine': forms.Select(attrs={'class': 'form-select'}),
