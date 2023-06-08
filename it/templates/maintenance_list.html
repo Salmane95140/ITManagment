@@ -36,6 +36,14 @@
                   </button>
                 </a>
               </td>
+              <td>
+                <a href="{% url 'mail_maintenance' maintenance.id %}">
+                  <button type="button" class="btn btn-secondary">
+                      <i class="bi bi-envelope"></i>
+
+                  </button>
+                </a>
+              </td>
             </tr>
           {% endfor %}
       {% endif %}

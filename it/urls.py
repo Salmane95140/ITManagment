@@ -30,4 +30,6 @@ urlpatterns = [
     path('maintenance/<pk>', views.MaintenancePreventiveDetailView.as_view(), name='detail_maintenance'),
     path('maintenance/update/<pk>', views.MaintenancePreventiveUpdateView.as_view(), name='update_maintenance'),
     path('maintenance/delete/<pk>', views.MaintenancePreventiveDeleteView.as_view(), name='delete_maintenance'),
+    path('maintenance/mail/<pk>', views.envoi_email_maintenance, name='mail_maintenance'),
+
 ]

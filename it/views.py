@@ -9,6 +9,7 @@ from django.views.generic.list import ListView
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from django.views.generic.detail import DetailView
 from django.urls import reverse_lazy
+from django.core.mail import send_mail
 
 def index(request):
     #context = {'head_title': "Accueil"}
@@ -261,3 +262,18 @@ class MaintenancePreventiveDeleteView(DeleteView):
     def form_valid(self, form):
         messages.success(self.request, "Suppression reussi.")
         return super(MaintenancePreventiveDeleteView,self).form_valid(form)
+
+def envoi_email_maintenance(request, pk):
+    maintenance = MaintenancePreventive.objects.get(pk=pk)
+    email = maintenance.personne.email
+    sujet = "Maintenance Equipement"
+    msg = ("La %s de votre Equipement %s sera faite le %s")%(maintenance.type_maintenance.nom, maintenance.machine.nom, maintenance.date)
+    send_mail(
+    sujet,
+    msg,
+    "itmanagement@it.com",
+    [email],
+    fail_silently=False,
+    )
+
+    return HttpResponseRedirect("/maintenance")
