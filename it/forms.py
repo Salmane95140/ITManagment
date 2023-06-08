@@ -52,11 +52,13 @@ class PersonneForm(forms.ModelForm):
         fields = [
             "prenom",
             "nom",
+            "email",
             "poste",
         ]
         widgets = {
             'prenom': forms.TextInput(attrs={'class': 'form-control'}),
             'nom': forms.TextInput(attrs={'class': 'form-control'}),
+            'email': forms.EmailInput(attrs={'class': 'form-control'}),
             'poste': forms.TextInput(attrs={'class': 'form-control'}),
         }
 

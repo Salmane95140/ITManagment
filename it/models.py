@@ -1,5 +1,6 @@
 from django.db import models
 from datetime import datetime
+from django.utils import timezone
 
 class Machine(models.Model):
 
@@ -14,9 +15,9 @@ class Machine(models.Model):
     nom = models.CharField(max_length=25)
     typeMachine = models.CharField(max_length=32, choices=TYPE, default='PC')
     prix = models.IntegerField()
-    dateAchat = models.DateField(default=datetime.now())
-    maintenanceDate = models.DateField(default=datetime.now())
-    dateFinContrantMaint = models.DateField(default=datetime.now())
+    dateAchat = models.DateField(default=timezone.now)
+    maintenanceDate = models.DateField(default=timezone.now)
+    dateFinContrantMaint = models.DateField(default=timezone.now)
 
     def __str__(self):
         return self.nom
@@ -28,13 +29,17 @@ class Personne(models.Model):
     poste = models.CharField(max_length=20)
     email = models.CharField(max_length=20)
 
+    class Meta:
+        unique_together = ["prenom", "nom"]
+
+
     def __str__(self):
         return '%s %s'%(self.nom, self.prenom)
 
 class UtilisateurMachine(models.Model):
     machine = models.ForeignKey(Machine, on_delete=models.CASCADE)
     personne = models.ForeignKey(Personne, on_delete=models.CASCADE)
-    dateAttribution = models.DateField(default= datetime.now())
+    dateAttribution = models.DateField(default= timezone.now)
 
     class Meta:
         unique_together = ["machine", "personne"]
@@ -53,7 +58,7 @@ class MaintenancePreventive(models.Model):
     type_maintenance = models.ForeignKey(TypeMaintenance, on_delete= models.CASCADE)
     machine = models.ForeignKey(Machine, on_delete=models.CASCADE)
     personne = models.ForeignKey(Personne, on_delete=models.CASCADE)
-    date = models.DateField(default=datetime.now())
+    date = models.DateField(default=timezone.now)
 
     def __str__(self):
         return '%s - %s'%(self.machine, self.type_maintenance)

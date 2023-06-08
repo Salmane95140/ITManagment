@@ -24,16 +24,19 @@ def login_view(request):
         mot_de_passe = request.POST["passe"]
         user = authenticate(username=nom, password=mot_de_passe)
         if user is not None:
-            return render(request, 'dashboard.html')
+            context = {'active': 'active', 'head_title' : "Dashboard"}
+
+            return render(request, 'dashboard.html', context)
         else:
             return render(request, 'error_login.html')
 
-
+# liste des machines ou equipements
 def machine_list_view(request):
     machines = Machine.objects.all()
     context = {'machines': machines, 'head_title' : "Liste des Equipements"}
     return render(request, 'machine_list.html', context)
 
+# les details de chaque machine avec comme parametre pk qui l'id de la machine
 def machine_detail_view(request, pk):
     machine = Machine.objects.get(id=pk)
     context = {'machine' : machine, 'head_title' : "Detail Equipement"}
@@ -88,7 +91,7 @@ def personne_add_form(request) :
     if request.method == "POST":
         form = PersonneForm(request.POST)
         if form.is_valid():
-            personne = Personne(prenom = form.cleaned_data['prenom'], nom=form.cleaned_data['nom'],  poste= form.cleaned_data['poste'])
+            personne = Personne(prenom = form.cleaned_data['prenom'], nom=form.cleaned_data['nom'], email=form.cleaned_data['email'], poste= form.cleaned_data['poste'])
             personne.save()
             messages.success(request, "Ajout reussi.")
 
