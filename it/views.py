@@ -265,9 +265,11 @@ class MaintenancePreventiveDeleteView(DeleteView):
 
 def envoi_email_maintenance(request, pk):
     maintenance = MaintenancePreventive.objects.get(pk=pk)
+    #recupuration email destinataire
     email = maintenance.personne.email
     sujet = "Maintenance Equipement"
     msg = ("La %s de votre Equipement %s sera faite le %s")%(maintenance.type_maintenance.nom, maintenance.machine.nom, maintenance.date)
+    #envoi de email de maintenance
     send_mail(
     sujet,
     msg,
